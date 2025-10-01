@@ -3,21 +3,587 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>其他优秀老婆</title>
-    <link rel="stylesheet" href="style.css">
+    <title>其他老婆推荐</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://2.z.wiki/autoupload/20250525/CcEb/1366X768/021748889cc29cfb4b1cbdba3a030eea.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 1200px;
+            margin: 20px auto;
+            width: 90%;
+        }
+
+        h1, h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .lang-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .lang-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* 创作者卡片样式 */
+        .creators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .creator-card {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .creator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+        }
+        
+        .creator-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            margin-right: 20px;
+        }
+        
+        .creator-info h2 {
+            color: #ffffff;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        
+        .creator-info .category {
+            color: #cccccc;
+            font-size: 0.9em;
+            text-align: left;
+        }
+        
+        .section {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        
+        .section h3 {
+            color: #ffffff;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+            padding-bottom: 5px;
+        }
+        
+        .section h3 i {
+            margin-right: 8px;
+            color: #007BFF;
+        }
+        
+        .section p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        
+        .links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+        
+        .btn-bilibili {
+            background-color: rgba(0, 123, 255, 0.7);
+            color: white;
+        }
+        
+        .btn-qq {
+            background-color: rgba(32, 201, 151, 0.7);
+            color: white;
+        }
+        
+        .btn:hover {
+            background-color: rgba(0, 123, 255, 0.9);
+            text-decoration: none;
+            transform: scale(1.05);
+        }
+        
+        .btn-qq:hover {
+            background-color: rgba(32, 201, 151, 0.9);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 87, 34, 0.8);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        
+        .stat-label {
+            font-size: 0.75em;
+            color: #cccccc;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .creators-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .creator-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .creator-info h2,
+            .creator-info .category {
+                text-align: center;
+            }
+            
+            .links {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 data-translate="Other Excellent Authors" data-translate-zh="其他优秀作者">其他优秀老婆</h1>
-        <p data-translate="Here are some excellent authors I recommend:" data-translate-zh="以下是一些我推荐的优秀老婆："></p>
-        <ul>
-            <li><a href="https://b23.tv/LPRy5iw" target="_blank" data-translate="Xia Fan De Xiao L" data-translate-zh="下饭的小L">下饭的小L</a></li>
-            <li><a href="https://b23.tv/f6zMKeO" target="_blank" data-translate="BLS_HorrorGame" data-translate-zh="BLS_HorrorGame">BLS_HorrorGame</a></li>
-            <li><a href="https://b23.tv/HNrHR2V" target="_blank" data-translate="Mo Er wants to work hard" data-translate-zh="墨兒想努力">墨兒想努力</a></li>
-            <li><a href="https://b23.tv/2kdOXya" target="_blank" data-translate="Mengxinnuo r" data-translate-zh="萌新诺r">萌新诺r</a></li>
-        </ul>
+        <h1>🎬 其他老婆推荐</h1>
+        <p>其他可爱，腼腆，娇弱的老婆</p>
+        
+        <div class="creators-grid">
+            <!-- 创作者1 -->
+            <div class="creator-card">
+                <div class="badge">模组up</div>
+                <div class="creator-header">
+                    <img src="https://tc-new.z.wiki/autoupload/f/eO-ytzl0DMyGgqKSFxi4cGSLEelruNP4lGiFb2uVJGyyl5f0KlZfm6UsKj-HyTuv/20251001/D86I/128X128/4c6285845f1561c9a7c2e02291338d3fd7d92c46.jpg%40128w_128h_1c_1s.webp/webp"创作者头像" class="avatar">
+                    <div class="creator-info">
+                        <h2>BLS_HorrorGame</h2>
+                        <div class="category"></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-user"></i> 个人简介</h3>
+                    <p>我是一名爱玩恐怖游戏并且很宠粉的小up主 偶尔会玩玩一些游戏的模组 同时一直希望给大家带来快乐 喜欢的宝子们给个关注支持一下吧o>_<o</p>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-star"></i> 站长评价</h3>
+                    <p>模组分享者，大部分模组可以获取都在他这里，《奶奶 降临》的创作者，是奶圈不可多得的良心UP主，强烈推荐关注！</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">6.8万</div>
+                        <div class="stat-label">粉丝数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">622</div>
+                        <div class="stat-label">视频数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">2909.9万</div>
+                        <div class="stat-label">播放率</div>
+                    </div>
+                </div>
+                
+                <div class="links">
+                    <a href="https://space.bilibili.com/527483785/dynamic?spm_id_from=333.1365.list.card_title.click" class="btn btn-bilibili" target="_blank">
+                        <i class="fab fa-bilibili"></i> 他的B站主页
+                    </a>
+                    <a href="https://qm.qq.com/q/7yB22ny2ZO" class="btn btn-qq" target="_blank">
+                        <i class="fab fa-qq"></i> 他的QQ群
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 创作者2 -->
+            <div class="creator-card">
+                <div class="badge">速通UP主</div>
+                <div class="creator-header">
+                    <img src="https://tc.z.wiki/autoupload/f/eO-ytzl0DMyGgqKSFxi4cGSLEelruNP4lGiFb2uVJGyyl5f0KlZfm6UsKj-HyTuv/20251001/qifY/128X128/7fd465298cd15caca175a97e65b5517c3b510079.jpg%40128w_128h_1c_1s.webp/webp" alt="创作者头像" class="avatar">
+                    <div class="creator-info">
+                        <h2>不会玩的小L呀</h2>
+                        <div class="category"></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-user"></i> 个人简介</h3>
+                    <p>无人在意，不定时更新</p>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-star"></i> 站长评价</h3>
+                    <p>速通这一方面还得是小鲨鱼</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">1311</div>
+                        <div class="stat-label">粉丝数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">324</div>
+                        <div class="stat-label">视频数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">32.1万</div>
+                        <div class="stat-label">播放率</div>
+                    </div>
+                </div>
+                
+                <div class="links">
+                    <a href="https://space.bilibili.com/3494361746639073/dynamic?spm_id_from=333.1365.list.card_avatar.click" class="btn btn-bilibili" target="_blank">
+                        <i class="fab fa-bilibili"></i> 他的B站主页
+                    </a>
+                    <a href="" class="btn btn-qq" target="_blank">
+                        <i class="fab fa-qq"></i> 他的QQ群
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 创作者3 -->
+            <div class="creator-card">
+                <div class="badge">EXE材质创作者</div>
+                <div class="creator-header">
+                    <img src="https://tc-new.z.wiki/autoupload/f/eO-ytzl0DMyGgqKSFxi4cGSLEelruNP4lGiFb2uVJGyyl5f0KlZfm6UsKj-HyTuv/20251001/aiHn/128X128/63c9d24053ee1616481d565d3445d9a2d3f62e9b.jpg%40128w_128h_1c_1s.webp/webp" alt="创作者头像" class="avatar">
+                    <div class="creator-info">
+                        <h2>子墨eee</h2>
+                        <div class="category"></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-user"></i> 个人简介</h3>
+                    <p>退圈了已经，但是还会发granny视频，但是我不会做模组了</p>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-star"></i> 站长评价</h3>
+                    <p>”我做了100个EXE材质“</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">598</div>
+                        <div class="stat-label">粉丝数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">66</div>
+                        <div class="stat-label">视频数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">45.6万</div>
+                        <div class="stat-label">播放率</div>
+                    </div>
+                </div>
+                
+                <div class="links">
+                    <a href="https://space.bilibili.com/1715266390/dynamic?spm_id_from=333.1365.list.card_avatar.click" class="btn btn-bilibili" target="_blank">
+                        <i class="fab fa-bilibili"></i> 他的B站主页
+                    </a>
+                    <a href="" class="btn btn-qq" target="_blank">
+                        <i class="fab fa-qq"></i> 他的QQ群
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 创作者4 -->
+            <div class="creator-card">
+                <div class="badge">外星人</div>
+                <div class="creator-header">
+                    <img src="https://tc.z.wiki/autoupload/f/eO-ytzl0DMyGgqKSFxi4cGSLEelruNP4lGiFb2uVJGyyl5f0KlZfm6UsKj-HyTuv/20251001/z0QN/540X528/D12.jpg/webp" alt="创作者头像" class="avatar">
+                    <div class="creator-info">
+                        <h2>萌新诺r</h2>
+                        <div class="category"></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-user"></i> 个人简介</h3>
+                    <p>我是谁，我也不到啊 QQ群996752755 </p>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-star"></i> 站长评价</h3>
+                    <p>疑似外星来地球打速通的人</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">496</div>
+                        <div class="stat-label">粉丝数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">114</div>
+                        <div class="stat-label">视频数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">22.9万</div>
+                        <div class="stat-label">播放率</div>
+                    </div>
+                </div>
+                
+                <div class="links">
+                    <a href="https://space.bilibili.com/669307924?spm_id_from=333.337.0.0" class="btn btn-bilibili" target="_blank">
+                        <i class="fab fa-bilibili"></i> 他的B站主页
+                    </a>
+                    <a href="" class="btn btn-qq" target="_blank">
+                        <i class="fab fa-qq"></i> 他的QQ群
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 创作者5 -->
+            <div class="creator-card">
+                <div class="badge">黑粉！！！</div>
+                <div class="creator-header">
+                    <img src="https://tc.z.wiki/autoupload/f/eO-ytzl0DMyGgqKSFxi4cGSLEelruNP4lGiFb2uVJGyyl5f0KlZfm6UsKj-HyTuv/20251001/F1aG/128X128/aa077174e23222f0f58644ecb8e06b317fc77a72.jpg%40128w_128h_1c_1s.webp/webp" alt="创作者头像" class="avatar">
+                    <div class="creator-info">
+                        <h2>小Y有点菜</h2>
+                        <div class="category"></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-user"></i> 个人简介</h3>
+                    <p>不到啊</p>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-star"></i> 站长评价</h3>
+                    <p>水视频这一块/.</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">411</div>
+                        <div class="stat-label">粉丝数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">80</div>
+                        <div class="stat-label">视频数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">14.3万</div>
+                        <div class="stat-label">播放率</div>
+                    </div>
+                </div>
+                
+                <div class="links">
+                    <a href="https://space.bilibili.com/3493291421075510/dynamic?spm_id_from=333.1365.list.card_avatar.click" class="btn btn-bilibili" target="_blank">
+                        <i class="fab fa-bilibili"></i> 他的B站主页
+                    </a>
+                    <a href="" class="btn btn-qq" target="_blank">
+                        <i class="fab fa-qq"></i> 他的QQ群
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 创作者6 -->
+            <div class="creator-card">
+                <div class="badge">菜单制作者</div>
+                <div class="creator-header">
+                    <img src="https://tc-new.z.wiki/autoupload/f/eO-ytzl0DMyGgqKSFxi4cGSLEelruNP4lGiFb2uVJGyyl5f0KlZfm6UsKj-HyTuv/20251001/DRHR/128X128/6526f0a87b880badc28707f30aa85f3ebed66952.jpg%40128w_128h_1c_1s.webp/webp"创作者头像" class="avatar">
+                    <div class="creator-info">
+                        <h2>nhbbj</h2>
+                        <div class="category"></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-user"></i> 个人简介</h3>
+                    <p>7盒/B站nhbbj，QQ群916371757或980923892,Neuro Hacking Binary Burst Jamming</p>
+                </div>
+                
+                <div class="section">
+                    <h3><i class="fas fa-star"></i> 站长评价</h3>
+                    <p>导管不回我</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">715</div>
+                        <div class="stat-label">粉丝数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">75</div>
+                        <div class="stat-label">视频数</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">9.5万</div>
+                        <div class="stat-label">播放率</div>
+                    </div>
+                </div>
+                
+                <div class="links">
+                    <a href="https://space.bilibili.com/1543698527?spm_id_from=333.337.0.0" class="btn btn-bilibili" target="_blank">
+                        <i class="fab fa-bilibili"></i> 他的B站主页
+                    </a>
+                    <a href="" class="btn btn-qq" target="_blank">
+                        <i class="fab fa-qq"></i> 他的QQ群
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 </p>
+        </footer>
     </div>
-    <button id="lang-toggle" class="lang-toggle">切换语言</button>
-    <script src="script.js"></script>
+
+    <button class="lang-toggle">语言切换</button>
+
+    <script>
+        // 添加卡片悬停效果增强
+        document.querySelectorAll('.creator-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+            });
+        });
+        
+        // 按钮点击效果
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // 添加点击反馈
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // 语言切换按钮功能
+        document.querySelector('.lang-toggle').addEventListener('click', function() {
+            alert('语言切换功能待实现');
+        });
+    </script>
 </body>
 </html>
