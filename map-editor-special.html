@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地图改造者特供 - 个人导航页</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-image: url('https://2.z.wiki/autoupload/20250525/CcEb/1366X768/021748889cc29cfb4b1cbdba3a030eea.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        /* 地图改造者页面专用样式 */
+        .map-editor-container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #007BFF;
+        }
+        
+        .page-header h1 {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            color: #f0f0f0;
+            font-size: 18px;
+        }
+        
+        .video-section {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .video-player {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        
+        .video-player video {
+            width: 100%;
+            display: block;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #007BFF;
+            color: #ffffff;
+        }
+        
+        .instructions {
+            margin-bottom: 40px;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .instructions p {
+            margin-bottom: 15px;
+        }
+        
+        .instructions h3 {
+            color: #007BFF;
+            margin: 20px 0 10px;
+        }
+        
+        .instructions ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .download-section {
+            margin-bottom: 40px;
+        }
+        
+        .tool-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .tool-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .tool-card h3 {
+            margin-top: 0;
+            color: #007BFF;
+            font-size: 20px;
+        }
+        
+        .tool-card p {
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background 0.3s;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .download-btn:hover {
+            background: #0056b3;
+            text-decoration: none;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .tool-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 26px;
+            }
+            
+            .map-editor-container {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="map-editor-container">
+        <!-- 页面标题 -->
+        <header class="page-header">
+            <h1>地图改造者特供</h1>
+            <p>专业地图编辑与优化工具</p>
+        </header>
+        
+        <!-- 视频部分 -->
+        <section class="video-section">
+            <h2 class="section-title">功能演示</h2>
+            <div class="video-player">
+                <video controls poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'%3E%3Crect fill='%23333' width='800' height='450'/%3E%3Ctext fill='%23fff' font-family='sans-serif' font-size='30' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E视频预览%3C/text%3E%3C/svg%3E">
+                    <source src="video/demo.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+        </section>
+        
+        <!-- 说明部分 -->
+        <section class="instructions">
+            <h2 class="section-title">工具说明</h2>
+            <p>地图改造者是一款功能强大的地图编辑工具，旨在帮助用户轻松创建、修改和优化各种类型的地图。</p>
+            
+            <h3>主要功能</h3>
+            <ul>
+                <li>直观的地图编辑界面，支持拖拽操作</li>
+                <li>多种地图元素和图标库</li>
+                <li>支持导入和导出多种地图格式</li>
+                <li>实时预览和编辑功能</li>
+                <li>自定义地图样式和主题</li>
+                <li>协作编辑功能，支持多人同时编辑</li>
+            </ul>
+            
+            <h3>使用指南</h3>
+            <p>1. 下载并安装地图改造者工具</p>
+            <p>2. 打开应用程序，选择新建地图或导入现有地图</p>
+            <p>3. 使用左侧工具栏添加地图元素</p>
+            <p>4. 使用右侧属性面板调整元素属性</p>
+            <p>5. 完成后保存或导出地图</p>
+            
+            <h3>系统要求</h3>
+            <p>操作系统：Windows 10/11, macOS 10.14+, Ubuntu 18.04+</p>
+            <p>内存：至少4GB RAM</p>
+            <p>存储空间：至少500MB可用空间</p>
+        </section>
+        
+        <!-- 工具下载部分 -->
+        <section class="download-section">
+            <h2 class="section-title">工具下载</h2>
+            <div class="tool-list">
+                <div class="tool-card">
+                    <h3>地图改造者 完整版</h3>
+                    <p>包含所有功能的完整版本，适合专业用户。</p>
+                    <p>版本：v2.1.0 | 大小：156 MB</p>
+                    <a href="#" class="download-btn">下载 Windows 版</a>
+                    <a href="#" class="download-btn">下载 macOS 版</a>
+                </div>
+                
+                <div class="tool-card">
+                    <h3>地图改造者 简化版</h3>
+                    <p>基础功能版本，适合初学者和轻度用户。</p>
+                    <p>版本：v2.1.0 | 大小：89 MB</p>
+                    <a href="#" class="download-btn">下载 Windows 版</a>
+                    <a href="#" class="download-btn">下载 macOS 版</a>
+                </div>
+                
+                <div class="tool-card">
+                    <h3>地图元素包</h3>
+                    <p>额外的地图图标和元素集合。</p>
+                    <p>包含：500+ 图标 | 大小：45 MB</p>
+                    <a href="#" class="download-btn">下载资源包</a>
+                </div>
+                
+                <div class="tool-card">
+                    <h3>用户手册</h3>
+                    <p>详细的用户指南和教程文档。</p>
+                    <p>格式：PDF | 大小：12 MB</p>
+                    <a href="#" class="download-btn">下载手册</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 返回链接 -->
+        <a href="index.html" class="back-link">← 返回主页</a>
+    </div>
+</body>
+</html>
