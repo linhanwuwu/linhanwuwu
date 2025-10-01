@@ -201,6 +201,14 @@
                 padding: 15px;
             }
         }
+        
+        .video-status {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -260,24 +268,56 @@
                     <h3>MT管理器</h3>
                     <p>包含所有功能的完整版本。</p>
                     <p>大小：27 MB</p>
-                    <a href="#" class="https://www.123865.com/s/C4LiVv-zCab">下载移动端</a>
+                    <a href="https://www.123865.com/s/C4LiVv-zCab" class="download-btn" target="_blank">下载移动端</a>
                 </div>
                 
                 <div class="tool-card">
                     <h3>资源包</h3>
                     <p>相关资源。</p>
-                    <p></p>
-                    <a href="#" class="https://www.123865.com/s/C4LiVv-LCab">下载资源包</a>
+                    <p>包含所有地图改造所需资源</p>
+                    <a href="https://www.123865.com/s/C4LiVv-LCab" class="download-btn" target="_blank">下载资源包</a>
                 </div>
-                
+            </div>
         </section>
         
         <!-- 返回链接 -->
-        <a href="index.html" class="back-link"></a>
+        <a href="index.html" class="back-link">← 返回主页</a>
     </div>
+
+    <script>
+        // 视频加载状态监控
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('mainVideo');
+            const statusElement = document.getElementById('videoStatus');
+            
+            if (video && statusElement) {
+                // 视频加载事件监听
+                video.addEventListener('loadstart', function() {
+                    statusElement.textContent = "正在加载视频...";
+                });
+                
+                video.addEventListener('canplay', function() {
+                    statusElement.textContent = "视频已就绪，可以播放";
+                    // 3秒后隐藏成功消息
+                    setTimeout(() => {
+                        statusElement.textContent = "";
+                    }, 3000);
+                });
+                
+                video.addEventListener('error', function(e) {
+                    console.error("视频加载错误:", e);
+                    statusElement.textContent = "视频加载失败，请检查文件路径或视频格式";
+                    
+                    // 提供备选方案
+                    setTimeout(() => {
+                        statusElement.innerHTML += "<br>如果问题持续存在，请<a href='video.mp4' download>点击这里下载视频</a>后手动播放";
+                    }, 2000);
+                });
+                
+                // 尝试预加载视频
+                video.load();
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
