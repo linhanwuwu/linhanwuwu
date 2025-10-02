@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>其他老婆推荐</title>
+    <title>神秘UP主 - 震撼登场</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -25,6 +25,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden;
         }
 
         .container {
@@ -41,24 +42,6 @@
         h1, h2 {
             color: #ffffff;
             margin-bottom: 20px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin: 5px 0;
-        }
-
-        a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
         }
 
         .lang-toggle {
@@ -192,6 +175,19 @@
             color: white;
         }
         
+        .btn-mystery {
+            background-color: rgba(155, 89, 182, 0.7);
+            color: white;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            margin: 20px auto;
+            display: block;
+            max-width: 300px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
         .btn:hover {
             text-decoration: none;
             transform: scale(1.05);
@@ -209,6 +205,12 @@
             background-color: rgba(255, 0, 0, 0.9);
         }
         
+        .btn-mystery:hover {
+            background-color: rgba(155, 89, 182, 0.9);
+            animation: none;
+            transform: scale(1.1);
+        }
+        
         .badge {
             position: absolute;
             top: 20px;
@@ -219,6 +221,10 @@
             border-radius: 12px;
             font-size: 0.75em;
             font-weight: bold;
+        }
+        
+        .badge-mystery {
+            background: rgba(155, 89, 182, 0.8);
         }
         
         .stats {
@@ -253,6 +259,112 @@
             font-size: 0.9em;
         }
         
+        /* 神秘UP主模态框样式 */
+        .mystery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mystery-content {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            border: 3px solid rgba(155, 89, 182, 0.8);
+            box-shadow: 0 0 50px rgba(155, 89, 182, 0.5);
+            animation: zoomIn 0.8s ease-out;
+            backdrop-filter: blur(10px);
+        }
+        
+        .mystery-avatar-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 5px solid rgba(155, 89, 182, 0.8);
+            padding: 5px;
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .mystery-avatar {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+        
+        .mystery-title {
+            font-size: 2.5em;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(155, 89, 182, 0.8);
+        }
+        
+        .mystery-subtitle {
+            font-size: 1.2em;
+            color: #cccccc;
+            margin-bottom: 30px;
+        }
+        
+        .mystery-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .mystery-close:hover {
+            transform: scale(1.2);
+        }
+        
+        /* 彩带效果 */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0.7;
+            z-index: 9998;
+        }
+        
+        /* 动画 */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(155, 89, 182, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(155, 89, 182, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(155, 89, 182, 0); }
+        }
+        
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
         @media (max-width: 768px) {
             .creators-grid {
                 grid-template-columns: 1fr;
@@ -275,6 +387,19 @@
             
             .links {
                 flex-direction: column;
+            }
+            
+            .mystery-content {
+                padding: 20px;
+            }
+            
+            .mystery-title {
+                font-size: 2em;
+            }
+            
+            .mystery-avatar-container {
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
@@ -335,7 +460,7 @@
             <div class="creator-card">
                 <div class="badge">速通UP主</div>
                 <div class="creator-header">
-                    <img src="https://tc.z.wiki/autoupload/f/eO-ytzl0DMyGgqKSFxi4cGSLEelruNP4lGiFb2uVJGyyl5f0KlZfm6UsKj-HyTuv/20251002/vIWf/1024X699/949f2c03335370744413fa9e29a6c9f9f0155587.jpg/webp" alt="创作者头像" class="avatar">
+                    <img src="https://tc.z.wiki/autoupload/f/eO-ytzl0DMyGgqKSFxi4cGSLEelruNP4lGiFb2uVJGyyl5f0KlZfm6UsKj-HyTuv/20251001/qifY/128X128/7fd465298cd15caca175a97e65b5517c3b510079.jpg%40128w_128h_1c_1s.webp/webp" alt="创作者头像" class="avatar">
                     <div class="creator-info">
                         <h2>不会玩的小L呀</h2>
                         <div class="category"></div>
@@ -562,9 +687,61 @@
             </div>
         </div>
         
+        <!-- 神秘UP主按钮 -->
+        <button id="showMystery" class="btn btn-mystery">
+            <i class="fas fa-question-circle"></i> 点击发现神秘老婆
+        </button>
+        
         <footer>
             <p>© 2025 </p>
         </footer>
+    </div>
+
+    <!-- 神秘UP主模态框 -->
+    <div id="mysteryModal" class="mystery-modal">
+        <div class="mystery-content">
+            <button class="mystery-close" id="closeMystery">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="mystery-avatar-container">
+                <img src="https://tc.z.wiki/autoupload/f/eO-ytzl0DMyGgqKSFxi4cGSLEelruNP4lGiFb2uVJGyyl5f0KlZfm6UsKj-HyTuv/20251002/FWfO/1024X1536/jpg.jpg/webp" alt="薯条FRlES头像" class="mystery-avatar">
+            </div>
+            
+            <h2 class="mystery-title">薯条FRlES</h2>
+            <p class="mystery-subtitle">神秘老婆登场！</p>
+            
+            <div class="section">
+                <h3><i class="fas fa-user"></i> 个人简介</h3>
+                <p>上学好累 我要在家躺着玩恐怖奶奶?</p>
+            </div>
+            
+            <div class="section">
+                <h3><i class="fas fa-star"></i> 站长评价</h3>
+                <p>薯条是肯基基的还是麦当当的</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">35</div>
+                    <div class="stat-label">粉丝数</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">视频数</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">873</div>
+                    <div class="stat-label">播放率</div>
+                </div>
+            </div>
+            
+            <div class="links">
+                <a href="https://space.bilibili.com/3546959937800204/dynamic" class="btn btn-bilibili" target="_blank">
+                    <i class="fab fa-bilibili"></i> 他的B站主页
+                </a>
+            </div>
+        </div>
     </div>
 
     <button class="lang-toggle">语言切换</button>
@@ -596,8 +773,75 @@
         document.querySelector('.lang-toggle').addEventListener('click', function() {
             alert('语言切换功能待实现');
         });
+        
+        // 神秘UP主显示功能
+        document.getElementById('showMystery').addEventListener('click', function() {
+            // 创建彩带效果
+            createConfetti();
+            
+            // 显示模态框
+            setTimeout(() => {
+                document.getElementById('mysteryModal').style.display = 'flex';
+            }, 500);
+        });
+        
+        // 关闭神秘UP主模态框
+        document.getElementById('closeMystery').addEventListener('click', function() {
+            document.getElementById('mysteryModal').style.display = 'none';
+        });
+        
+        // 点击模态框外部关闭
+        document.getElementById('mysteryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+        
+        // 彩带效果函数
+        function createConfetti() {
+            const colors = ['#f94144', '#f3722c', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b', '#577590', '#9b59b6'];
+            const confettiCount = 150;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // 随机颜色
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.backgroundColor = color;
+                
+                // 随机位置
+                const posX = Math.random() * window.innerWidth;
+                confetti.style.left = `${posX}px`;
+                confetti.style.top = '-10px';
+                
+                // 随机大小
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                
+                // 随机形状
+                if (Math.random() > 0.5) {
+                    confetti.style.borderRadius = '50%';
+                }
+                
+                document.body.appendChild(confetti);
+                
+                // 动画
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.2, 1)'
+                });
+                
+                // 动画结束后移除元素
+                animation.onfinish = () => {
+                    confetti.remove();
+                };
+            }
+        }
     </script>
 </body>
 </html>
-
-
